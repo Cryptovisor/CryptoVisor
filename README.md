@@ -11,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-* [Python 3.6.x](https://www.python.org/downloads/)
+* Python 3.6.x
 * tkinter
 * BeautifulSoup4
 * requests
