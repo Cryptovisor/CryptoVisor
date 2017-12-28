@@ -37,6 +37,7 @@ pip install beautifulsoup4
 * [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) - Used to parse webpages
 * [requests](http://docs.python-requests.org/en/master/) - As they say "HTTP for humans"
 * [Widget Styling](http://effbot.org/tkinterbook/tkinter-widget-styling.htm) - Styling
+* [Logomaster AI](https://logomaster.ai/) - Main logo
 * [Coinmarketcap](https://coinmarketcap.com/all/views/all/) - Data provider
 * [Coinmarketcap API](https://pypi.python.org/pypi/coinmarketcap/) - API wrapper
 
