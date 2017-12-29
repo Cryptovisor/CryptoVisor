@@ -27,6 +27,7 @@ Open command prompt, and type the following sequentially
 ```
 pip install requests
 pip install beautifulsoup4
+pip install coinmarketcap
 ```
 
 
