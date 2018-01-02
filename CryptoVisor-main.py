@@ -1,6 +1,8 @@
+from coinmarketcap import Market
 import tkinter as tk                
 from tkinter import font  as tkfont 
 
+cp = Market()
 
 class Engine(tk.Tk):
 
