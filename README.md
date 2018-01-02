@@ -1,4 +1,4 @@
-# CryptoVisor (Mini Project)
+# CryptoVisor 
 
 Windows application to maximize crypto-currency investment or trade using Greedy Algorithms. 
 
