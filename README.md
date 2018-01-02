@@ -41,6 +41,7 @@ pip install coinmarketcap
 * [Logomaster AI](https://logomaster.ai/) - Main logo
 * [Coinmarketcap](https://coinmarketcap.com/all/views/all/) - Data provider
 * [Coinmarketcap API](https://pypi.python.org/pypi/coinmarketcap/) - API wrapper
+* [Coinmetrics Datasets](https://coinmetrics.io/data-downloads/) - Dataset for cryptocurrency historical prices
 
 
 ## Authors
