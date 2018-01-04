@@ -42,12 +42,14 @@ pip install coinmarketcap
 * [Coinmarketcap](https://coinmarketcap.com/all/views/all/) - Data provider
 * [Coinmarketcap API](https://pypi.python.org/pypi/coinmarketcap/) - API wrapper
 * [Coinmetrics Datasets](https://coinmetrics.io/data-downloads/) - Dataset for cryptocurrency historical prices
+* [CurrencyConverter](https://pypi.python.org/pypi/CurrencyConverter/0.5) - A currency converter using the European Central Bank data
 
 
 ## Authors
 
-* **Mohak Kulshrestha** - [MohakKul](https://github.com/MohakKul)
 * **Samar Srivastava** - [samacker77](https://github.com/samacker77)
+* **Mohak Kulshrestha** - [MohakKul](https://github.com/MohakKul)
+
 
 
 ## License
