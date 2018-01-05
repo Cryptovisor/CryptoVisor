@@ -3,22 +3,25 @@ import tkinter as tk
 from tkinter import font  as tkfont 
 
 cp = Market()
-def PriceFinder(*args):   #args are currencies choosen by user
+def PriceFinder(*args,**kwargs):   #args are currencies choosen by user
 	currencies = []       #Will hold currencies choosen by user
 	for i in args:
 		currencies.append(i)
 	#print(currencies)
-
+	
 	prices = []
 	for j in currencies:
-		real_time_price = cp.ticker(currency=str(j),limit=1,convert='INR')
+		real_time_price = cp.ticker(currency=str(j),limit=1,convert='INR') 
 		prices.append(real_time_price[0]['price_inr'])
 
 	#print(prices)
 	currency_dict = dict(zip(currencies,prices))
-	#print(currency_dict)
+	return currency_dict
+def assign_weights(a_list,a_dictionary):
+	weights = []
 
-#PriceFinder('Bitcoin','Ethereum','Litecoin','Ripple','Dash','Cardano')
+
+#print(PriceFinder('Bitcoin','Ethereum','Litecoin','Ripple','Dash','Cardano'))
 
 class Engine(tk.Tk):
 
