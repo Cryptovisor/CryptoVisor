@@ -18,6 +18,7 @@ def PriceFinder(*args,**kwargs):   #args are currencies choosen by user
 	currency_dict = dict(zip(currencies,prices))
 	return currency_dict
 def assign_weights(a_list,a_dictionary):
+	#tanmaya work here
 	weights = []    #weight-list
 
 
