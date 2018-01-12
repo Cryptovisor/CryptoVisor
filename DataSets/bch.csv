@@ -1,4 +1,4 @@
-date,txVolume(USD),txCount,marketcap(USD),price(USD),exchangeVolume(USD),generatedCoins,fees
+date,txVolume_USD,txCount,marketcap_USD,price_USD,exchangeVolume_USD,generatedCoins,fees
 2017-07-31,702743806.587,230867.0,0.0,294.46,1075960.0,1812.5,194.86886623
 2017-08-01,506586501.079,76537.0,0.0,380.01,65988800.0,1112.5,51.70601851
 2017-08-02,104044590.675,7416.0,6302360000.0,452.66,416207000.0,87.5,6.28890264
