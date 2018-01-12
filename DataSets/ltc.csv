@@ -1,4 +1,4 @@
-date,txVolume(USD),txCount,marketcap(USD),price(USD),exchangeVolume(USD),generatedCoins,fees
+date,txVolume_USD,txCount,marketcap_USD,price_USD,exchangeVolume_USD,generatedCoins,fees
 01-01-17,19725204.81,2446,212691000,4.51,11337500,13500,53.22023872
 02-01-17,26109050.18,4032,222154000,4.65,14595300,14425,42.07331836
 03-01-17,44212322.07,3864,228878000,4.63,10055700,14700,44.82690541
