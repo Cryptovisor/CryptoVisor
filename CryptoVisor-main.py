@@ -1,6 +1,11 @@
 from coinmarketcap import Market
 import tkinter as tk                
-from tkinter import font  as tkfont 
+from tkinter import font  as tkfont
+import pandas as pd
+
+curr =  {'Bitcoin Cash' : 'bch', 'Bitcoin' : 'btc', 'Dash' : 'dash', 'Decred' : 'dcr', 'Dogecoin' : 'doge',
+         'Ethereum Classic' : 'etc', 'Ethereum' : 'eth', 'Litecoin' : 'ltc', 'PIVX' : 'pivx', 'Vertcoin' : 'vtc',
+         'NEM' : 'xem', 'Monero' : 'xmr', 'Zcash' : 'zec'}
 
 cp = Market()
 def PriceFinder(*args,**kwargs):   #args are currencies choosen by user
@@ -16,12 +21,27 @@ def PriceFinder(*args,**kwargs):   #args are currencies choosen by user
 
 	#print(prices)
 	currency_dict = dict(zip(currencies,prices))
-	return currency_dict
-def assign_weights(a_list,a_dictionary):
-	weights = []    #weight-list
+	extract(currency_dict)
+
+def extract(d):
+        curr_list = list(d.keys()) #will store names of all the currencies requested by the user
+        for i in curr_list:
+                data = pd.read_csv('DataSets\\'+curr[i].strip('')+'.csv',skiprows = range(1,337)) #will extract data of last 30 days
+                dates = data.date.tolist()   #will store all the dates in a list
+                prices = data.price_USD.tolist()   #will store all the prices in a list
+                if len(dates)>30:   #In case of a leap year
+                        del dates[0]
+                        del prices[0]
+                assign_weights(dict(zip(dates,prices)),d[i])
+                
+        
+def assign_weights(a_dictionary,price):
+	#weights = []    #weight-list
+        
 
 
-#print(PriceFinder('Bitcoin','Ethereum','Litecoin','Ripple','Dash','Cardano'))
+#PriceFinder('Bitcoin','Ethereum','Litecoin','Dash')
+
 
 class Engine(tk.Tk):
 
