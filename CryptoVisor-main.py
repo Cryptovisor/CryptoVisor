@@ -23,20 +23,21 @@ def PriceFinder(*args,**kwargs):   #args are currencies choosen by user
 	currency_dict = dict(zip(currencies,prices))
 	extract(currency_dict)
 
-def extract(d):
-        curr_list = list(d.keys()) #will store names of all the currencies requested by the user
-        for i in curr_list:
-                data = pd.read_csv('DataSets\\'+curr[i].strip('')+'.csv',skiprows = range(1,337)) #will extract data of last 30 days
-                dates = data.date.tolist()   #will store all the dates in a list
-                prices = data.price_USD.tolist()   #will store all the prices in a list
-                if len(dates)>30:   #In case of a leap year
-                        del dates[0]
-                        del prices[0]
-                assign_weights(dict(zip(dates,prices)),d[i])
-                
-        
-def assign_weights(a_dictionary,price):
-	#weights = []    #weight-list
+def extract(price_dictionary):
+
+	mean_of_30_Days = {}
+	curr_list = list(price_dictionary.keys())
+	for i in curr_list:
+		data = pd.read_csv('DataSets\\'+curr[i].strip('')+'.csv',skiprows = range(1,337))
+		prices = data.price_USD.tolist()
+		summation = sum(prices)/30
+		mean_of_30_Days[i] = summation
+	assign_weights(mean_of_30_Days,price_dictionary)
+
+
+def assign_weights(mean_of_30_Days,price_dictionary):
+	#print(mean_of_30_Days)
+	#print(price_dictionary)
         
 
 
