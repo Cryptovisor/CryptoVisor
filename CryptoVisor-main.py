@@ -2,7 +2,7 @@ from coinmarketcap import Market
 import tkinter as tk                
 from tkinter import font  as tkfont
 import pandas as pd
-
+#####################################BACKEND##############################################################################################
 curr =  {'Bitcoin Cash' : 'bch', 'Bitcoin' : 'btc', 'Dash' : 'dash', 'Decred' : 'dcr', 'Dogecoin' : 'doge',
          'Ethereum Classic' : 'etc', 'Ethereum' : 'eth', 'Litecoin' : 'ltc', 'PIVX' : 'pivx', 'Vertcoin' : 'vtc',
          'NEM' : 'xem', 'Monero' : 'xmr', 'Zcash' : 'zec'}
@@ -43,7 +43,7 @@ def assign_weights(mean_of_30_Days,price_dictionary):
 
 #PriceFinder('Bitcoin','Ethereum','Litecoin','Dash')
 
-
+#############################################FRONTEND################################################################################
 class Engine(tk.Tk):
 
     def __init__(self, *args, **kwargs):
