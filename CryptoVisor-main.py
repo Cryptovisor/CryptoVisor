@@ -16,8 +16,8 @@ def PriceFinder(*args,**kwargs):   #args are currencies choosen by user
 	
 	prices = []
 	for j in currencies:
-		real_time_price = cp.ticker(currency=str(j),limit=1,convert='INR') 
-		prices.append(real_time_price[0]['price_inr'])
+		real_time_price = cp.ticker(currency=str(j),limit=1,convert='USD') 
+		prices.append(real_time_price[0]['price_usd'])
 
 	#print(prices)
 	currency_dict = dict(zip(currencies,prices))
