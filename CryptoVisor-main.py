@@ -32,10 +32,10 @@ def extract(price_dictionary):
 		prices = data.price_USD.tolist()
 		summation = sum(prices)/30
 		mean_of_30_Days[i] = summation
-	assign_weights(mean_of_30_Days,price_dictionary)
+	NaiveBayes(mean_of_30_Days,price_dictionary)
 
 
-def assign_weights(mean_of_30_Days,price_dictionary):
+def NaiveBayes(mean_of_30_Days,price_dictionary):
 	#print(mean_of_30_Days)
 	#print(price_dictionary)
         
