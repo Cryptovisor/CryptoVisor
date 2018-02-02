@@ -32,12 +32,19 @@ def extract(price_dictionary):
 		prices = data.price_USD.tolist()
 		summation = sum(prices)/30
 		mean_of_30_Days[i] = summation
-	NaiveBayes(mean_of_30_Days,price_dictionary)
+	performance(mean_of_30_Days,price_dictionary)
 
 
-def NaiveBayes(mean_of_30_Days,price_dictionary):
-	#print(mean_of_30_Days)
-	#print(price_dictionary)
+def performance(mean_of_30_Days,price_dictionary):  #gives 30 days performance of a currency
+	currencyList = [str(i[0]) for i in mean_of_30_Days.items()]
+	meanList = [float(i[1]) for i in mean_of_30_Days.items()]
+	priceList = [float(i[1]) for i in price_dictionary.items()]
+	performanceList = [priceList[i] - meanList[i] for i in range(min(len(priceList),len(meanList)))]
+	performance_Dictionary = dict(zip(currencyList,performanceList))
+	NaiveBayes(performance_Dictionary,price_dictionary)
+
+def NaiveBayes(performance_Dictionary,price_dictionary):
+	######tttest
         
 
 
