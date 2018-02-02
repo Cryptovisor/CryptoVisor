@@ -2,7 +2,7 @@ from coinmarketcap import Market
 import tkinter as tk                
 from tkinter import font  as tkfont
 import pandas as pd
-
+#####################################BACKEND##############################################################################################
 curr =  {'Bitcoin Cash' : 'bch', 'Bitcoin' : 'btc', 'Dash' : 'dash', 'Decred' : 'dcr', 'Dogecoin' : 'doge',
          'Ethereum Classic' : 'etc', 'Ethereum' : 'eth', 'Litecoin' : 'ltc', 'PIVX' : 'pivx', 'Vertcoin' : 'vtc',
          'NEM' : 'xem', 'Monero' : 'xmr', 'Zcash' : 'zec'}
@@ -16,33 +16,41 @@ def PriceFinder(*args,**kwargs):   #args are currencies choosen by user
 	
 	prices = []
 	for j in currencies:
-		real_time_price = cp.ticker(currency=str(j),limit=1,convert='INR') 
-		prices.append(real_time_price[0]['price_inr'])
+		real_time_price = cp.ticker(currency=str(j),limit=1,convert='USD') 
+		prices.append(real_time_price[0]['price_usd'])
 
 	#print(prices)
 	currency_dict = dict(zip(currencies,prices))
 	extract(currency_dict)
 
-def extract(d):
-        curr_list = list(d.keys()) #will store names of all the currencies requested by the user
-        for i in curr_list:
-                data = pd.read_csv('DataSets\\'+curr[i].strip('')+'.csv',skiprows = range(1,337)) #will extract data of last 30 days
-                dates = data.date.tolist()   #will store all the dates in a list
-                prices = data.price_USD.tolist()   #will store all the prices in a list
-                if len(dates)>30:   #In case of a leap year
-                        del dates[0]
-                        del prices[0]
-                assign_weights(dict(zip(dates,prices)),d[i])
-                
-        
-def assign_weights(a_dictionary,price):
-	#weights = []    #weight-list
+def extract(price_dictionary):
+
+	mean_of_30_Days = {}
+	curr_list = list(price_dictionary.keys())
+	for i in curr_list:
+		data = pd.read_csv('DataSets\\'+curr[i].strip('')+'.csv',skiprows = range(1,337))
+		prices = data.price_USD.tolist()
+		summation = sum(prices)/30
+		mean_of_30_Days[i] = summation
+	performance(mean_of_30_Days,price_dictionary)
+
+
+def performance(mean_of_30_Days,price_dictionary):  #gives 30 days performance of a currency
+	currencyList = [str(i[0]) for i in mean_of_30_Days.items()]
+	meanList = [float(i[1]) for i in mean_of_30_Days.items()]
+	priceList = [float(i[1]) for i in price_dictionary.items()]
+	performanceList = [priceList[i] - meanList[i] for i in range(min(len(priceList),len(meanList)))]
+	performance_Dictionary = dict(zip(currencyList,performanceList))
+	NaiveBayes(performance_Dictionary,price_dictionary)
+
+def NaiveBayes(performance_Dictionary,price_dictionary):
+	######tttest
         
 
 
 #PriceFinder('Bitcoin','Ethereum','Litecoin','Dash')
 
-
+#############################################FRONTEND################################################################################
 class Engine(tk.Tk):
 
     def __init__(self, *args, **kwargs):
