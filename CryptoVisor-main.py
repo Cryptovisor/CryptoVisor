@@ -41,12 +41,27 @@ def performance(mean_of_30_Days,price_dictionary):  #gives 30 days performance o
 	priceList = [float(i[1]) for i in price_dictionary.items()]
 	performanceList = [priceList[i] - meanList[i] for i in range(min(len(priceList),len(meanList)))]
 	performance_Dictionary = dict(zip(currencyList,performanceList))
-	NaiveBayes(performance_Dictionary,price_dictionary)
+	#print(performance_Dictionary)
+	WeightDistributor(performance_Dictionary,price_dictionary)
+	
+	
+def WeightDistributor(performance_Dictionary,price_dictionary):   #This algorithm will define weights
+	weights = []
+	Pf = [float(i[1]) for i in price_dictionary.items()] #real time price
+	#print(Pf)
+	Gh = [float(i[1]) for i in performance_Dictionary.items()]    #gain-drop in previous 30 days
+	#print(Gh)
+	C = [str(i[0]) for i in performance_Dictionary.items()]
+	#print(C)
+	for i in tuple(zip(Pf,Gh)):
+		temp_var = ((i[1]*i[0])/(i[0]-i[1]))%30
+		weights.append(round(temp_var,3))
+	#print(weights)
+	FractionalKnapsack(capacity,weights,Pf)
 
-def NaiveBayes(performance_Dictionary,price_dictionary):
-	######tttest
-        
-
+def FractionalKnapsack(capacity,weights,Pf):
+	#print(capacity,weights,Pf)
+	
 
 #PriceFinder('Bitcoin','Ethereum','Litecoin','Dash')
 
