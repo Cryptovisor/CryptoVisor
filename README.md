@@ -13,8 +13,9 @@ What things you need to install the software and how to install them
 ```
 * Python 3.6.x
 * tkinter
-* BeautifulSoup4
 * requests
+* Pandas
+* Python Imaging Library(PIL)
 * Internet connection
 ```
 
@@ -25,8 +26,8 @@ A step by step series of examples that tell you have to get a development env ru
 After downloading and installing Python(Don't forget to tick the PATH checkbox while installing Python),
 Open command prompt, and type the following sequentially
 ```
-pip install requests
-pip install beautifulsoup4
+pip install Pillow
+pip install pandas
 pip install coinmarketcap
 pip install currencyconverter
 ```
