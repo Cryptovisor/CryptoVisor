@@ -1,6 +1,7 @@
 # CryptoVisor 
 
-Windows application to maximize crypto-currency investment or trade using Greedy Algorithms. 
+Windows application to maximize crypto-currency investment or trade using Greedy Algorithms and Branch & Bound methods.
+Deep Learning soon to be implemented. 
 
 ## Getting Started
 
