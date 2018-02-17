@@ -1,8 +1,72 @@
 from coinmarketcap import Market
-import tkinter as tk              
+from tkinter import *             
 from tkinter import font  as tkfont
 import pandas as pd
+from tkinter import ttk
+from PIL import Image, ImageTk
+
 test = []
+#############################################FRONTEND################################################################################
+
+def raise_frame(frame):
+    frame.tkraise()
+
+root = Tk()
+
+StartPage = Frame(root)
+Introduction = Frame(root)
+Amount = Frame(root)
+Currencies = Frame(root)
+Result = Frame(root)
+Loading1 = Frame(root)
+Loading2 = Frame(root)
+Loading3 = Frame(root)
+title_font = tkfont.Font(family='Comic Sans MS', size=18, weight="bold", slant="italic")
+for frame in (StartPage, Loading1, Loading2, Loading3, Amount, Currencies, Result):
+    frame.grid(row=0, column=0, sticky='news')
+
+##StartPage
+pic = PhotoImage(file="background.pgm",width=900,height=500)
+Label(StartPage,compound=RIGHT,text="",image=pic, font=title_font,width=900,height=500).pack()
+Button(StartPage, text='Start', command=lambda:raise_frame(Loading1),bg="#3333cc",height=2,width=15).pack()
+Label(StartPage, text='•').pack()
+Big_font = tkfont.Font(family='Verdana', size=30, weight="normal", slant="roman")
+##Loading1
+Label(Loading1,text="Loading modules and components",font=Big_font).pack()
+progressbar = ttk.Progressbar(Loading1,orient=HORIZONTAL, length=1000, mode='determinate')
+progressbar.pack(fill=BOTH, side=TOP,pady=125)
+progressbar.start()
+Label(Loading1, text='••').pack(side=BOTTOM)
+Loading1.after(10000, lambda:raise_frame(Loading2))
+##Loading2
+progressbar2 = ttk.Progressbar(Loading2,orient=HORIZONTAL, length=1000, mode='determinate')
+Label(Loading2,text="Establishing connection",font=Big_font).pack(side=TOP)
+progressbar2.pack(fill=BOTH, side=TOP,pady=125)
+progressbar2.start()
+Label(Loading2, text='•••').pack(side=BOTTOM)
+Loading2.after(20000, lambda:raise_frame(Loading3))
+##Loading3
+progressbar3 = ttk.Progressbar(Loading3,orient=HORIZONTAL, length=1000, mode='determinate')
+Label(Loading3,text="Connecting to CoinmarketCap API",font=Big_font).pack(side=TOP)
+progressbar3.pack(fill=BOTH, side=TOP,pady=125)
+progressbar3.start()
+Label(Loading3, text='••••').pack(side=BOTTOM)
+Loading3.after(30000, lambda:raise_frame(Amount))
+#Amount
+Label(Amount,text="Please choose the amount you want to invest").pack()
+Label(Amount, text='•••••').pack(side=BOTTOM)
+capacity1 = StringVar(Amount)
+capacity1.set("1000") # default value
+ChosenAmount = OptionMenu(Amount, capacity1, "2000", "3000", "4000")
+ChosenAmount.pack()
+Label(Amount,text="Or type a custom value").pack(padx=5,pady=5)
+
+
+
+raise_frame(StartPage)
+root.iconbitmap('window.ico')
+
+root.mainloop()
 #####################################BACKEND##############################################################################################
 curr =  {'Bitcoin Cash' : 'bch', 'Bitcoin' : 'btc', 'Dash' : 'dash', 'Decred' : 'dcr', 'Dogecoin' : 'doge',
          'Ethereum Classic' : 'etc', 'Ethereum' : 'eth', 'Litecoin' : 'ltc', 'PIVX' : 'pivx', 'Vertcoin' : 'vtc',
@@ -123,82 +187,3 @@ def FractionalKnapsack(capacity: int, weights: list, Pf: list,price_dictionary )
 
 PriceFinder('Bitcoin','Ethereum','Dash')
 
-#############################################FRONTEND################################################################################
-
-class Engines(tk.Tk):
-
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-
-        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
-
-        # the container is where we'll stack a bunch of frames
-        # on top of each other, then the one we want visible
-        # will be raised above the others
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-
-        self.frames = {}
-        for F in (StartPage, PageOne, PageTwo):
-            page_name = F.__name__
-            frame = F(parent=container, controller=self)
-            self.frames[page_name] = frame
-
-            # put all of the pages in the same location;
-            # the one on the top of the stacking order
-            # will be the one that is visible.
-            frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame("StartPage")
-
-    def show_frame(self, page_name):
-        '''Show a frame for the given page name'''
-        frame = self.frames[page_name]
-        frame.tkraise()
-
-
-class StartPage(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        self.config(bg="#383a39")
-        self.pic = tk.PhotoImage(file="logo.PGM")
-        label = tk.Label(self,compound=tk.CENTER,text="",image=self.pic, font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-
-        button1 = tk.Button(self,fg="#a8dbcd",bg="#383a39", text="Start",
-                            command=lambda: controller.show_frame("PageOne"),height = 2, width = 20)
-        
-        button1.pack()
-      
-
-
-class PageOne(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        
-        label = tk.Label(self, font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartPage"))
-        button.pack()
-
-
-class PageTwo(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="This is page 2", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartPage"))
-        button.pack()
-if __name__ == "__main__":
-    app = Engines()
-    app.mainloop()
